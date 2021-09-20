@@ -1,0 +1,1947 @@
+from tkinter import *
+import sqlite3
+import tkinter as tk
+import math, random
+from tkinter import ttk
+import tkinter.ttk as ttk
+from tkinter.ttk import Checkbutton
+from tkinter import messagebox
+from tkinter.ttk import Combobox
+
+db = sqlite3.connect('JWMarriot.db')
+cursor = db.cursor()
+
+
+def show_frame(frame):
+    frame.tkraise()
+
+
+window = tk.Tk()
+window.geometry("1350x690+0+4")
+window.iconbitmap(r'hitx.ico')
+window.resizable(0, 0)
+window.title("Hotel Management System")
+window.config(bg="lightyellow")
+
+frame1 = tk.Frame(window)
+frame2 = tk.Frame(window)
+frame3 = tk.Frame(window)
+frame4 = tk.Frame(window)
+frame5 = tk.Frame(window)
+frame6 = tk.Frame(window)
+frame7 = tk.Frame(window)
+frame8 = tk.Frame(window)
+frame10 = tk.Frame(window)
+frame11 = tk.Frame(window)
+frame14 = tk.Frame(window)
+frame15 = tk.Frame(window)
+
+
+# =================================================
+
+
+def clr():
+    c = 1
+    if (c == 1):
+        messagebox.showinfo('Saved', "Go for the  Calculation OR  Go Back")
+
+
+for frame in (frame1, frame2, frame3, frame4, frame5, frame6, frame7, frame8, frame10, frame11, frame14, frame15):
+    frame.place(x=0, y=2, width=1350, height=10000)
+
+
+# ===========================================About Frame======================================#
+def about():
+    show_frame(frame15)
+    frame15_tittle = tk.Label(frame15, bg="grey").place(x=0, y=0, width=1350, height=800)
+    fr15_1 = tk.Label(frame15, bg="darkgrey").place(x=70, y=9, width=1350, height=60)
+    fr15_2 = tk.Label(frame15, text="About Us...", bg="darkgrey", font=("Bahnschrift SemiCondensed", 25)).place(x=0,
+                                                                                                                y=9,
+                                                                                                                width=140,
+                                                                                                                height=60)
+    fr15_3 = tk.Label(frame15, bg="darkgrey").place(x=0, y=85, width=1350, height=20)
+    fr15_4 = tk.Label(frame15, bg="darkgrey").place(x=0, y=150, width=50, height=500)
+    fr15_5 = tk.Label(frame15, bg="darkgrey").place(x=1299, y=150, width=50, height=500)
+    butn_15 = tk.Button(frame15, text="Close ", font=("Bahnschrift SemiCondensed", 15),
+                        command=lambda: show_frame(frame1),
+                        bg="grey", cursor="hand2", activebackground="darkgrey", bd=4, relief="groove").place(x=579,
+                                                                                                             y=651,
+                                                                                                             width=250,
+
+                                                                                                             height=34)
+
+    box_15 = tk.Text(frame15, width=130, bd=2, height=26, wrap='word', font=('Arial', 13, "bold"), bg="lightgrey",
+                     relief="groove")
+    box_15.place(x=90, y=150)
+    box_15.delete('1.0', END)
+    box_15.insert(INSERT,
+                  "\nThe Hotel Management System application is designed to provide a perfect User experience.In order to make things easy we enhance this application by GUI (Graphical User Interface).")
+    box_15.insert(INSERT,
+                  "\n\nThere are many nice features are present in this application as it is also, not very difficult to operate this application.This application can be used in Hotels or by a person who can manage all the things by his own.Another feature of this appliction is that your all records are saved in a database,means now you can save or review your credentials in a quick access manner.")
+    box_15.insert(INSERT,
+                  "\n\nThe security is most important thing in any application,by keeping this in mind we developed this application in that manner so that any unauthoried input as well as User cannot be allowed to access this application or its features.")
+    box_15.insert(END,
+                  f"\n\nThe whole application contains different sections which makes it more dynamic to use as one can find all the things in just at one place in a orderly way. The booking of rooms and food section are developed according to the User demand.")
+    box_15.insert(END,
+                  f"\n\nWe hope that this application will provide a better experience to you and make your task easy and fast.")
+    box_15.insert(END, f"\n\nDEVELOPERS :-")
+    box_15.insert(END,
+                  f"\n\n     1) Ankit Kesarwani                                                            2) Anshul Kumar Rawat                                                  3) Himanshu Dwivedi      ")  # ======Amount is Shown in the bill=====#
+    box_15.insert(END,
+                  f"\n\n\n                                                  4) Harsh Gupta                                                                             5) Harshit Srivastava                                                                  ")  # ======GST is Shown in the bill=====#
+
+
+# ============================================frame 5=======================#
+# ======================f1
+
+
+imagehome = PhotoImage(file="htyu7.png")
+
+label = ttk.Label(frame1, image=imagehome).place(x=-1, y=2, width=1350, height=700)
+F1 = tk.Frame(frame1, relief="groove", bd=0, bg="grey").place(x=0, y=0, width=1350, height=70)
+F1 = tk.Frame(frame1, relief="groove", bd=0, bg="grey").place(x=0, y=617, width=1350, height=70)
+lo1 = tk.Label(frame1, text=" Welcome ", font=("Bahnschrift", 30), bg="grey", fg="white").place(x=79, y=8, width=1200)
+lo1 = tk.Label(frame1, bg="white").place(x=570, y=630, height=45, width=130)
+lo1 = tk.Label(frame1, bg="white").place(x=710, y=630, height=45, width=135)
+B11 = tk.Button(frame1, text="Get Started", font=("Bahnschrift SemiCondensed", 15), command=lambda: show_frame(frame10),
+                bg="grey", cursor="hand2", activebackground="darkgrey").place(x=572, y=632,
+                                                                              width=125,
+                                                                              height=40)
+B112 = tk.Button(frame1, text="About", font=("Bahnschrift SemiCondensed", 15), command=about,
+                 bg="grey", cursor="hand2", activebackground="darkgrey").place(x=713, y=632,
+                                                                               width=129,
+                                                                               height=40)
+
+# =========================================================SignUp Frame=======================================================#
+
+nw_log = StringVar()
+ps_log = StringVar()
+cnfpss = StringVar()
+global v
+
+
+def allow():
+    n = nw_log.get()
+    p = ps_log.get()
+    crp = cnfpss.get()
+    flag=0
+    for i in n :
+        if(i>='0' and i<='9'):
+            flag=1;
+    if(flag==1):
+        messagebox.showerror("Error","Enter only Alphabets !")
+    else:
+        if(n =='' and p=='' and crp==''):
+            messagebox.showerror("Error","Fields are Empty !")
+        elif(n==''):
+            messagebox.showerror("Error","Username Field is Empty !")
+        elif(p==''):
+            messagebox.showerror("Error","Password Field is Empty !")
+        elif(crp==''):
+            messagebox.showerror("Error","Confirm Password Field is Empty !")
+        elif (p != '' and crp != '' and p != crp):
+            messagebox.showerror('Error', 'Password Mismatch')
+        elif (n != '' and p != '' and crp != ''):
+            show_frame(frame2)
+        else:
+            messagebox.showerror('Error', 'Fields are Empty')
+
+
+def put():
+    n = nw_log.get()
+    p = ps_log.get()
+    crp = cnfpss.get()
+    flag=0
+    cursor.execute("create table if not exists JW77(Username text, Password text )")
+    for i in n:
+        if(n>='0' and n<='9'):
+            flag=1
+    if(flag==1):
+        messagebox.showerror("Error","Enter only Alphabets !")
+    else:
+        if (n == '' and p == '' and crp == ''):
+            messagebox.showerror("Error", "Fields are Empty !")
+        elif (n == ''):
+            messagebox.showerror("Error", "Username Field is Empty !")
+        elif (p == ''):
+            messagebox.showerror("Error", "Password Field is Empty !")
+        elif (crp == ''):
+            messagebox.showerror("Error", "Confirm Password Field is Empty !")
+        elif (p != '' and crp != '' and p != crp):
+            messagebox.showerror('Error', 'Password Mismatch')
+        elif (n != '' and p != '' and crp != ''):
+            cursor.execute('insert into JW77(Username,Password) values(?,?)', (n, p))
+            messagebox.showinfo('Success', "saved")
+            db.commit()
+        else:
+            messagebox.showerror('Error', 'Field is Empty')
+
+
+imagehome_10 = PhotoImage(file="boot.png")
+label_9 = ttk.Label(frame10, image=imagehome_10).place(x=0, y=-1, width=1350, height=1200)
+
+B_log = tk.Button(frame10, text="Submit", font=("Bahnschrift SemiCondensed", 15), command=put,
+                  bg="grey", cursor="hand2", activebackground="darkgrey").place(x=569, y=632,
+                                                                                width=125,
+                                                                                height=40)
+B_log_3 = tk.Button(frame10, text="Proceed", font=("Bahnschrift SemiCondensed", 15), bg="grey", cursor="hand2",
+                    command=allow
+                    , activebackground="darkgrey").place(x=698, y=632,
+                                                         width=125,
+                                                         height=40)
+
+ln8 = tk.Label(frame10, text="SignUp Page...", font=("Bahnschrift", 30), bg="grey", fg="white").place(x=0, y=25,
+                                                                                                      width=400)
+
+ln8_2 = tk.Label(frame10, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=120, height=530, width=55)
+lo8_3 = tk.Label(frame10, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=260, height=35, width=1350)
+lo8_4 = tk.Label(frame10, text="Create New Username", font=("Arial Rounded MT Bold", 19), bd=5, bg="darkgrey").place(
+    x=200, y=260, height=35)
+e8_1 = tk.Entry(frame10, bd=3, font=("Arial", 15), relief="groove", textvariable=nw_log).place(x=680, y=262,
+                                                                                               width=500, height=30)
+lo8_5 = tk.Label(frame10, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=360, height=35, width=1350)
+lo8_6 = tk.Label(frame10, text="Create New Password", font=("Arial Rounded MT Bold", 19), bd=5, bg="darkgrey").place(
+    x=200, y=360, height=35)
+e8_2 = tk.Entry(frame10, bd=3, font=("Arial", 15), relief="groove", show="*", textvariable=ps_log).place(x=680,
+                                                                                                         y=362,
+                                                                                                         width=500,
+                                                                                                         height=30)
+lo8_7 = tk.Label(frame10, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=460, height=35, width=1350)
+lo8_8 = tk.Label(frame10, text="Confirm New Password", font=("Arial Rounded MT Bold", 19), bd=5,
+                 bg="darkgrey").place(x=200, y=460, height=35)
+e8_3 = tk.Entry(frame10, bd=3, font=("Arial", 15), relief="groove", show="*", textvariable=cnfpss).place(x=680, y=462,
+                                                                                                         width=500,
+                                                                                                         height=30)
+
+ln8_9 = tk.Label(frame10, font=("Bahnschrift", 30), bg="white").place(x=297, y=566, height=49, width=807)
+B_log_2 = tk.Button(frame10, text="Already a User ! Login", font=("Bahnschrift SemiCondensed", 15),
+                    command=lambda: show_frame(frame11)
+                    , bg="grey", cursor="hand2", activebackground="darkgrey", bd=1).place(x=300, y=570,
+                                                                                          width=800, height=40)
+
+#
+
+
+# =============================================Login Page========================================#
+
+username = StringVar()
+password = StringVar()
+
+
+def login():
+    with sqlite3.connect('JWMarriot.db') as db:
+        c = db.cursor()
+        k = db.cursor()
+    flag1 = 0
+    flag2 = 0
+
+    ur = username.get()
+    pss = password.get()
+    print(ur)
+    print(pss)
+    for i in ur:
+        if (ur >= '0' and ur <= '9'):
+            flag2 = 1;
+    if (flag2 == 1):
+        messagebox.showerror("Error", "Enter only Alphabets !")
+    else:
+        if (ur == ''):
+            messagebox.showerror('Error', 'Username Field is Empty !')
+        elif (pss == ''):
+            messagebox.showerror('Error', 'Password Field is Empty !')
+        elif (ur=='' and pss == ''):
+            messagebox.showerror('Error', 'Fields are Empty !')
+        if (ur != '' and pss != ''):
+            c.execute('select    * from JW77 ')
+
+            result = c.fetchall()
+
+            for row in result:
+                if (row[0] == ur and str(row[1]) == pss):
+                    flag1 = 1
+            if (flag1 == 1):
+                messagebox.showinfo("success","Userfound")
+            elif (flag1 != 1):
+                messagebox.showerror("Error", "Invalid Username Or Password")
+
+
+
+
+def login_nxt():
+    with sqlite3.connect('JWMarriot.db') as db:
+        c = db.cursor()
+        k = db.cursor()
+    flag1 = 0
+    flag2 = 0
+
+    ur = username.get()
+    pss = password.get()
+    print(ur)
+    print(pss)
+    for i in ur:
+        if (ur >= '0' and ur <= '9'):
+            flag2 = 1;
+    if (flag2 == 1):
+        messagebox.showerror("Error", "Enter only Alphabets !")
+    else:
+        if (ur == ''):
+            messagebox.showerror('Error', 'Username Field is Empty !')
+        elif (pss == ''):
+            messagebox.showerror('Error', 'Password Field is Empty !')
+        elif (ur=='' and pss == ''):
+            messagebox.showerror('Error', 'Fields are Empty !')
+        if (ur != '' and pss != ''):
+            c.execute('select    * from JW77 ')
+
+            result = c.fetchall()
+
+            for row in result:
+                if (row[0] == ur and str(row[1]) == pss):
+                    flag1 = 1
+            if (flag1 == 1 ):
+                show_frame(frame2)
+            elif(flag1!=1):
+                messagebox.showerror("Error", "Invalid Username Or Password")
+
+
+
+# =====================================Details Frame===================================#
+nme = StringVar()
+adno = StringVar()
+namex = StringVar()
+namep = StringVar()
+
+
+def allow_me():
+    with sqlite3.connect('JWMarriot.db') as db:
+        c = db.cursor()
+        k = db.cursor()
+        w = db.cursor()
+    c.execute('select     * from JW_prm ')
+    k.execute('select     * from JW_lux ')
+    w.execute('select     * from JW_delx ')
+    result3 = c.fetchall()
+    result4 = k.fetchall()
+    result5 = w.fetchall()
+    nm = nme.get()
+    adn = adno.get()
+    flag_3 = 0
+    flag_4 = 0
+    flag_5 = 0
+    if (nm == '' and adn == ''):
+        messagebox.showerror("Error", "Fields are Empty")
+    elif (nm == ''):
+        messagebox.showerror("Error", "Name Field is Empty")
+    elif (adn == ''):
+        messagebox.showerror("Error", "Aadhaar No. Field is Empty")
+    else:
+        for row3 in result3:
+            if (str(row3[2]) == adn and row3[0] == nm):
+                flag_3 = 1
+                show_frame(frame5)
+                namex.set(row3[0])
+                namep.set(row3[1])
+        for row4 in result4:
+            if (str(row4[2]) == adn and row4[0] == nm):
+                flag_4 = 1
+                show_frame(frame5)
+                namex.set(row4[0])
+                namep.set(row4[1])
+        for row5 in result5:
+            if (str(row5[2]) == adn and row5[0] == nm):
+                flag_5 = 1
+                show_frame(frame5)
+                namex.set(row5[0])
+                namep.set(row5[1])
+        if (flag_3 != 1 and flag_4 != 1 and flag_5 != 1):
+            messagebox.showerror("Error", "Please Check Your Details First !")
+
+
+def conct():
+    with sqlite3.connect('JWMarriot.db') as db:
+        c = db.cursor()
+        k = db.cursor()
+        w = db.cursor()
+    nm = nme.get()
+    adn = adno.get()
+    print(nm)
+    print(adn)
+    flag_3 = 0
+    flag_4 = 0
+    flag_5 = 0
+    pss = password.get()
+    cursor.execute(
+        "create table if not exists JW_prm(Name text,Phonenumber text,Aadhaarnumber text,EmailId text,Address text,City text,State text,Age text,Gender text,Dstay )")
+    cursor.execute(
+        "create table if not exists JW_lux(Name text,Phonenumber text,Aadhaarnumber text,EmailId text,Address text,City text,State text,Age text,Gender text,Dstay )")
+    cursor.execute(
+        "create table if not exists JW_delx(Name text,Phonenumber text,Aadhaarnumber text,EmailId text,Address text,City text,State text,Age text,Gender text,Dstay )")
+    c.execute('select     * from JW_prm ')
+    k.execute('select     * from JW_lux ')
+    w.execute('select     * from JW_delx ')
+    result3 = c.fetchall()
+    result4 = k.fetchall()
+    result5 = w.fetchall()
+    if (nm == '' and adn == ''):
+        messagebox.showerror("Error", "Fields are Empty")
+    elif (nm == ''):
+        messagebox.showerror("Error", "Name Field is Empty")
+    elif (adn == ''):
+        messagebox.showerror("Error", "Aadhaar No. Field is Empty")
+    else:
+        for row3 in result3:
+            if (str(row3[2]) == adn and row3[0] == nm):
+                flag_3 = 1
+                box14_p = tk.Text(frame14, width=46, height=21, wrap='word', font=("Arial", 12, "bold"), bg="grey")
+                box14_p.place(x=90, y=150, width=1190, height=470)
+                show_frame(frame14)
+                box14_p.delete('1.0', END)
+                box14_p.insert(INSERT,
+                               "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------")
+                box14_p.insert(INSERT,
+                               "\n                                                                                                                                  Hotel JW Marriott")
+                box14_p.insert(INSERT,
+                               "\n---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------")
+                box14_p.insert(END, f"\n\nName:            {row3[0]}")
+                box14_p.insert(END, f"\n\n\nPhone No.:             {row3[1]}")
+                box14_p.insert(END, f"\n\n\nAadhaar No.:             {str(row3[2])}")
+                box14_p.insert(END,
+                               f"\n\n\nEmail ID:              {row3[3]}")  # ======Amount is Shown in the bill=====#
+                box14_p.insert(END,
+                               f"\n\n\nAddress:                  {row3[4]}")  # ======GST is Shown in the bill=====#
+                box14_p.insert(INSERT, f"\n\n\nCity: {row3[5]}")
+                box14_p.insert(END,
+                               f"                                                                                                 Room Type: Premium                                      Days to Stay: {str(row3[9])}")
+
+                box14_p.insert(INSERT,
+                               f"\n\n\nState: {row3[6]}                                                     Cost of Room: {(int(row3[9]) * 2400)}")
+                box14_p.insert(END,
+                               f"                                                  Age:                  {row3[7]}                                Gender: {row3[8]}")
+
+                box14_p.insert(INSERT,
+                               "\n\n===================================================================================================================================")
+
+        for row4 in result4:
+            if (str(row4[2]) == adn and row4[0] == nm):
+                flag_4 = 1
+                box14_l = tk.Text(frame14, width=46, height=21, wrap='word', font=("Arial", 12, "bold"), bg="grey")
+                box14_l.place(x=90, y=150, width=1190, height=470)
+                show_frame(frame14)
+                box14_l.delete('1.0', END)
+                box14_l.insert(INSERT,
+                               "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------")
+                box14_l.insert(INSERT,
+                               "\n                                                                                                                                  Hotel JW Marriott")
+                box14_l.insert(INSERT,
+                               "\n---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------")
+                box14_l.insert(END, f"\n\nName:            {row4[0]}")
+                box14_l.insert(END, f"\n\n\nPhone No.:             {row4[1]}")
+                box14_l.insert(END, f"\n\n\nAadhaar No.:             {row4[2]}")
+                box14_l.insert(END,
+                               f"\n\n\nEmail ID:              {row4[3]}")  # ======Amount is Shown in the bill=====#
+                box14_l.insert(END,
+                               f"\n\n\nAddress:                  {row4[4]}")  # ======GST is Shown in the bill=====#
+                box14_l.insert(INSERT, f"\n\n\nCity: {row4[5]}")
+                box14_l.insert(END,
+                               f"                                                                                              Room Type: Luxury                Days to Stay: {str(row4[9])}")
+                box14_l.insert(INSERT,
+                               f"\n\n\nState: {row4[6]}                                                     Cost of Room: {(int(row4[9]) * 3400)}")
+                box14_l.insert(END,
+                               f"                                                                                  Age:                  {row4[7]}                              Gender: {row4[8]}")  # ======GST is Shown in the bill=====#
+
+                box14_l.insert(INSERT,
+                               "\n\n===================================================================================================================================")
+
+        for row5 in result5:
+            if (str(row5[2]) == adn and row5[0] == nm):
+                flag_5 = 1
+                box14_d = tk.Text(frame14, width=46, height=21, wrap='word', font=("Arial", 12, "bold"), bg="grey")
+                box14_d.place(x=90, y=150, width=1190, height=470)
+                show_frame(frame14)
+                box14_d.delete('1.0', END)
+                box14_d.insert(INSERT,
+                               "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------")
+                box14_d.insert(INSERT,
+                               "\n                                                                                                                                  Hotel JW Marriott")
+                box14_d.insert(INSERT,
+                               "\n---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------")
+                box14_d.insert(END, f"\n\nName:            {row5[0]}")
+                box14_d.insert(END, f"\n\n\nPhone No.:             {row5[1]}")
+                box14_d.insert(END, f"\n\n\nAadhaar No.:             {row5[2]}")
+                box14_d.insert(END,
+                               f"\n\n\nEmail ID:              {row5[3]}")  # ======Amount is Shown in the bill=====#
+                box14_d.insert(END,
+                               f"\n\n\nAddress:                  {row5[4]}")  # ======GST is Shown in the bill=====#
+                box14_d.insert(INSERT, f"\n\n\nCity: {row5[5]}")
+                box14_d.insert(END,
+                               f"                                                                                              Room Type: Delux                    Days to Stay: {str(row5[9])}")
+                box14_d.insert(INSERT,
+                               f"\n\n\nState: {row5[6]}                                                            Cost of Room: {(int(row5[9]) * 4400)}")
+                box14_d.insert(END,
+                               f"                                                                 Age:                  {row5[7]}                                Gender: {row5[8]}")  # ======GST is Shown in the bill=====#
+
+                box14_d.insert(INSERT,
+                               "\n\n===================================================================================================================================")
+        if (flag_3 != 1 and flag_4 != 1 and flag_5 != 1):
+            messagebox.showerror("Error", "No Such type of Booking is Found !")
+
+
+frame14_p_tittle = tk.Label(frame14, bg="grey").place(x=0, y=0, width=1350, height=800)
+lnn14_p = tk.Label(frame14, text="Your Details...", font=("Bahnschrift", 30), bg="grey", fg="lightgrey").place(x=0,
+                                                                                                               y=15,
+                                                                                                               width=400,
+                                                                                                               height=34)
+lnn14_1_p = tk.Label(frame14, font=("Bahnschrift", 30), bg="darkgrey").place(x=30, y=70, height=10, width=1240)
+lnn14_4_p = tk.Label(frame14, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=91, height=37, width=1350)
+lnn14_4a_p = tk.Label(frame14, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=643, height=33, width=1350)
+lnn14_p_3 = tk.Label(frame14, text="Do you Want to go in Eatery Section", font=("Bahnschrift", 15), bg="grey",
+                     fg="lightgrey").place(x=470, y=647, width=350, height=26)
+
+Btn_fd = tk.Button(frame14, text="Show My Details", font=("Bahnschrift SemiCondensed", 15), bg="grey", command=conct,
+                   cursor="hand2", activebackground="darkgrey", bd=1).place(x=1040, y=93, width=200, height=32)
+Btn_fd_1 = tk.Button(frame14, text="YES", font=("Bahnschrift SemiCondensed", 15), bg="grey", command=allow_me,
+                     cursor="hand2", activebackground="darkgrey", bd=1).place(x=850, y=645, width=100, height=28)
+Btn_fd_2 = tk.Button(frame14, text="NO", font=("Bahnschrift SemiCondensed", 15), bg="grey",
+                     command=lambda: show_frame(frame2),
+                     cursor="hand2", activebackground="darkgrey", bd=1).place(x=959, y=645, width=100, height=28)
+
+lnn14_p_1 = tk.Label(frame14, text="Enter Name", font=("Bahnschrift", 15), bg="grey", fg="lightgrey").place(x=48,
+                                                                                                            y=100,
+                                                                                                            width=150,
+                                                                                                            height=20)
+e14_2_p = tk.Entry(frame14, bd=3, font=("Arial", 15), relief="groove", textvariable=nme).place(x=220, y=95,
+                                                                                               width=300, height=30)
+lnn14_p_2 = tk.Label(frame14, text="Enter Aadhaar No.", font=("Bahnschrift", 15), bg="grey", fg="lightgrey").place(
+    x=529, y=100, width=180, height=20)
+
+e14_3_p = tk.Entry(frame14, bd=3, font=("Arial", 15), relief="groove", textvariable=adno).place(x=720, y=95, width=300,
+                                                                                                height=30)
+fr14_p = tk.Frame(frame14, relief="groove", bd=3, bg="grey").place(x=86, y=145, width=1200, height=490)
+box14_p = tk.Text(frame14, width=46, height=21, wrap='word', font=("Arial", 12, "bold"), bg="grey")
+box14_p.place(x=90, y=150, width=1190, height=470)
+show_frame(frame14)
+box14_p.delete('1.0', END)
+box14_p.insert(INSERT,
+               "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------")
+box14_p.insert(INSERT,
+               "\n                                                                                                                                  Hotel JW Marriott")
+box14_p.insert(INSERT,
+               "\n---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------")
+
+imagehome_11 = PhotoImage(file="kk.png")
+label_91 = ttk.Label(frame11, image=imagehome_11).place(x=0, y=-4, width=1350, height=1000)
+
+lnn9 = tk.Label(frame11, text="Login Page...", font=("Bahnschrift", 30), bg="grey", fg="white").place(x=0, y=25,
+                                                                                                      width=400)
+lnn9_1 = tk.Label(frame11, font=("Bahnschrift", 30), bg="darkgrey").place(x=49, y=95, height=10, width=1200)
+lnn9_2 = tk.Label(frame11, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=120, height=530, width=55)
+lon9_3 = tk.Label(frame11, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=260, height=35, width=1350)
+
+lon9_4 = tk.Label(frame11, text="Username", font=("Arial Rounded MT Bold", 19), bd=5, bg="darkgrey").place(x=260, y=260,
+                                                                                                           height=35)
+en9_1 = tk.Entry(frame11, bd=3, font=("Arial", 15), relief="groove", textvariable=username).place(x=680, y=262,
+                                                                                                  width=500, height=30)
+lno9_5 = tk.Label(frame11, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=360, height=35, width=1350)
+
+lno9_6 = tk.Label(frame11, text="Password", font=("Arial Rounded MT Bold", 19), bd=5, bg="darkgrey").place(x=260, y=360,
+                                                                                                           height=35)
+en9_2 = tk.Entry(frame11, bd=3, font=("Arial", 15), relief="groove", show="*", textvariable=password).place(x=680,
+                                                                                                            y=362,
+                                                                                                            width=500,
+                                                                                                            height=30)
+
+B_loing_2 = tk.Button(frame11, text="Check", font=("Bahnschrift SemiCondensed", 15), command=login, bg="grey",
+                      cursor="hand2", activebackground="darkgrey", bd=4, relief="groove").place(x=250, y=570,
+                                                                                                width=300,
+                                                                                                height=40)
+B_loing_3 = tk.Button(frame11, text="Next", font=("Bahnschrift SemiCondensed", 15), bg="grey", command=login_nxt,
+                      cursor="hand2", activebackground="darkgrey", bd=4, relief="groove").place(x=585, y=570,
+                                                                                                width=300,
+                                                                                                height=40)
+B_loing_4 = tk.Button(frame11, text="Exit", font=("Bahnschrift SemiCondensed", 15), command=lambda: show_frame(frame10),
+                      bg="grey",
+                      cursor="hand2", activebackground="darkgrey", bd=4, relief="groove").place(x=920, y=570,
+                                                                                                width=300,
+                                                                                                height=40)
+
+# =================f2
+
+
+frame3_tittle = tk.Label(frame2, text='frame 2', bg="grey").place(x=0, y=0, width=1350, height=800)
+
+
+imagehomee = PhotoImage(file="hotel42.png")
+
+labell = ttk.Label(frame2, image=imagehomee).place(x=685, y=170, width=720, height=390)
+imagehomeee = PhotoImage(file="hotel41.png")
+labell = ttk.Label(frame2, image=imagehomeee).place(x=-100, y=170, width=784, height=390)
+
+loo1 = tk.Label(frame2, text=" Our Services", font=("Bahnschrift", 30), bg="grey", fg="white").place(x=79, y=25,
+                                                                                                     width=1200)
+lo11 = tk.Label(frame2, font=("Bahnschrift", 30), bg="darkgrey").place(x=79, y=95, height=10, width=1200)
+lo111 = tk.Label(frame2, font=("Bahnschrift", 30), bg="white").place(x=5, y=570, height=56, width=668)
+B12 = tk.Button(frame2, text="BOOKING", font=("Bahnschrift SemiCondensed", 15), command=lambda: show_frame(frame3),
+                bg="grey", cursor="hand2", activebackground="darkgrey", bd=1).place(x=8, y=573,
+                                                                                    width=660,
+
+                                                                                    height=50)
+lo1 = tk.Label(frame2, font=("Bahnschrift", 30), bg="white").place(x=690, y=570, height=56, width=655)
+B12 = tk.Button(frame2, text="EATERY", font=("Bahnschrift SemiCondensed", 15), command=lambda: show_frame(frame5),
+                bg="grey", cursor="hand2", activebackground="darkgrey", bd=1).place(x=693, y=573,
+                                                                                    width=648,
+                                                                                    height=50)
+##=============================f3
+
+F1 = tk.Frame(frame3, relief="groove", bd=0, bg="grey").place(x=0, y=0, width=1350, height=800)
+
+B11 = tk.Button(frame3, text="BACK1", font=("Bahnschrift SemiCondensed", 15), command=lambda: show_frame(frame1),
+                bg="lightblue", cursor="hand2", activebackground="lightgreen", bd=3, relief="groove").place(x=350,
+                                                                                                            y=413,
+                                                                                                            width=120,
+                                                                                                            height=30)
+lo1 = tk.Label(frame3, text="You're at Booking Page...", font=("Bahnschrift", 30), bg="grey", fg="white").place(x=0,
+                                                                                                                y=25,
+                                                                                                                width=500)
+lo1 = tk.Label(frame3, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=95, height=10, width=1350)
+lo1 = tk.Label(frame3, text="Select Your Room", font=("Bahnschrift", 30), bg="grey", fg="white").place(x=-5, y=120,
+                                                                                                       width=390,
+                                                                                                       height=50)
+
+imagehomee1 = PhotoImage(file="pr1.png")
+labell = ttk.Label(frame3, image=imagehomee1).place(x=0, y=170, width=500, height=390)
+imagehomee2 = PhotoImage(file="dx2.png")
+labell = ttk.Label(frame3, image=imagehomee2).place(x=420, y=170, width=500, height=390)
+imagehomee3 = PhotoImage(file="lx3.png")
+labell = ttk.Label(frame3, image=imagehomee3).place(x=850, y=170, width=700, height=390)
+
+lo1 = tk.Label(frame3, font=("Bahnschrift", 30), bg="white").place(x=5, y=570, height=56, width=400)
+B12 = tk.Button(frame3, text="Premium Room", font=("Bahnschrift SemiCondensed", 15), command=lambda: show_frame(frame4),
+                bg="grey", cursor="hand2", activebackground="darkgrey", bd=1).place(x=8, y=573,
+                                                                                    width=394,
+
+                                                                                    height=50)
+lo1 = tk.Label(frame3, font=("Bahnschrift", 30), bg="white").place(x=438, y=570, height=56, width=400)
+B12 = tk.Button(frame3, text="Delux Room", font=("Bahnschrift SemiCondensed", 15), command=lambda: show_frame(frame6),
+                bg="grey", cursor="hand2", activebackground="darkgrey", bd=1).place(x=440, y=573,
+                                                                                    width=394,
+                                                                                    height=50)
+lo1 = tk.Label(frame3, font=("Bahnschrift", 30), bg="white").place(x=920, y=570, height=56, width=400)
+B12 = tk.Button(frame3, text="Luxury Room", font=("Bahnschrift SemiCondensed", 15), command=lambda: show_frame(frame7),
+                bg="grey", cursor="hand2", activebackground="darkgrey", bd=1).place(x=922, y=573,
+                                                                                    width=394,
+                                                                                    height=50)
+o1 = tk.Label(frame3, font=("Bahnschrift", 30), bg="darkgrey").place(x=1282, y=6, height=39, width=65)
+B12 = tk.Button(frame3, text="Back", font=("Bahnschrift SemiCondensed", 15), command=lambda: show_frame(frame2),
+                bg="darkgrey", cursor="hand2", activebackground="darkgrey", bd=1).place(x=1285, y=8,
+                                                                                        width=60,
+                                                                                        height=35)
+m_o1 = tk.Label(frame3, font=("Bahnschrift", 30), bg="darkgrey").place(x=1072, y=6, height=40, width=205)
+B_mn = tk.Button(frame3, text="Already Booked Room !!! ", font=("Bahnschrift SemiCondensed", 15),
+                 command=lambda: show_frame(frame14),
+                 bg="darkgrey", cursor="hand2", activebackground="darkgrey", bd=1).place(x=1075, y=8,
+                                                                                         width=200,
+                                                                                         height=36)
+##===================================Premium Room=========================================##
+Nmpr = StringVar()
+Phpr = StringVar()
+Adar = StringVar()
+Empr = StringVar()
+Adpr = StringVar()
+Ctpr = StringVar()
+Stpr = StringVar()
+
+
+def check_pr():
+    flag = 0
+    flag_2 = 0
+    flag_3 = 0
+    flag_4 = 0
+    pass1 = 0
+    pass2 = 0
+    pass3 = 0
+    pass4 = 0
+    pass5 = 0
+    ad_pux = Adar.get()
+    ph_pux = Phpr.get()
+    em_pux = Empr.get()
+    nm_pux = Nmpr.get()
+    adr_pux = Adpr.get()
+    ct_pux = Ctpr.get()
+    st_pux = Stpr.get()
+    count_1 = len(ad_pux)
+    count_2 = len(ph_pux)
+    if (
+            nm_pux == '' and ad_pux == '' and ph_pux == '' and adr_pux == '' and ct_pux == '' and st_pux == '' and em_pux == ''):
+        Nmpr.set("Name Field is Empty !")
+        Adar.set("Aadhaar Field is Empty !")
+        Phpr.set("Phone Number Field is Empty !")
+        Adpr.set("Address Field is Empty !")
+        Ctpr.set("City Field is Empty !")
+        Stpr.set("State Field is Empty !")
+        Empr.set("Email ID Field is Empty !")
+    elif (nm_pux == ''):
+        Nmpr.set("Name Field is Empty !")
+    elif (ad_pux == ''):
+        Adar.set("Aadhaar Field is Empty !")
+    elif (ph_pux == ''):
+        Phpr.set("Phone Number Field is Empty !")
+    elif (adr_pux == ''):
+        Adpr.set("Address Field is Empty !")
+    elif (ct_pux == ''):
+        Ctpr.set("City Field is Empty !")
+    elif (st_pux == ''):
+        Stpr.set("State Field is Empty !")
+    elif (em_pux == ''):
+        Empr.set("Email ID Field is Empty !")
+    else:
+        if ((count_1 < 12 and count_2 < 10) or (count_1 > 12 and count_2 > 10)):
+            Adar.set("Enter 12 Digit Aadhaar Number !")
+            Phpr.set("Enter 10 Digit Phone Number !")
+        elif (count_1 < 12 or count_1 > 12):
+            Adar.set("Enter 12 Digit Aadhaar Number !")
+        elif (count_2 < 10 or count_2 > 10):
+            Phpr.set("Enter 10 Digit Phone Number !")
+        else:
+            pass1 = 1
+
+            for i in nm_pux:
+                if (i >= '0' and i <= '9'):
+                    flag_2 = 1
+            if (flag_2 == 1):
+                Nmpr.set("Enter Alphabets Only !")
+            else:
+                pass2 = 1
+
+        for j in ct_pux:
+            if (j >= '0' and j <= '9'):
+                flag_3 = 1
+        if (flag_3 == 1):
+            Ctpr.set("Enter Alphabets Only !")
+        else:
+            pass3 = 1
+
+        for k in st_pux:
+            if (k >= '0' and k <= '9'):
+                flag_4 = 1
+        if (flag_4 == 1):
+            Stpr.set("Enter Alphabets Only !")
+        else:
+            pass4 = 1
+
+        for i in em_pux:
+            if (i == '@'):
+                flag = 1
+
+        if (flag == 1):
+            pass5 = 1
+        else:
+            Empr.set("Enter Valid Email ID !")
+    if (pass1 == 1 and pass2 == 1 and pass3 == 1 and pass4 == 1 and pass5 == 1):
+        insert_pr()
+        messagebox.showinfo("Success", "Details are Saved :)")
+    else:
+        messagebox.showerror("Error", "Review your Credentials once again !")
+
+
+def clear_pr():
+    Nmpr.set('')
+    Phpr.set('')
+    Adar.set('')
+    Empr.set('')
+    Adpr.set('')
+    Ctpr.set('')
+    Stpr.set('')
+    combo1.set("Select")
+    combo2.set("select")
+    combo4.set("Select")
+
+
+def insert_pr():
+    N = Nmpr.get()
+    P = Phpr.get()
+    AA = Adar.get()
+    E = Empr.get()
+    A = Adpr.get()
+    C = Ctpr.get()
+    S = Stpr.get()
+    c1 = combo1.get()
+    c2 = combo2.get()
+    c4 = combo4.get()
+
+    cursor.execute(
+        "create table if not exists JW_prm(Name text,Phonenumber text,Aadhaarnumber text,EmailId text,Address text,City text,State text,Age text,Gender text,Dstay )")
+    cursor.execute(
+        'insert into JW_prm(Name,Phonenumber,Aadhaarnumber,EmailId,Address,City,State,Age,Gender,Dstay) values(?,?,?,?,?,?,?,?,?,?)',
+        (N, P, AA, E, A, C, S, c1, c2, c4))
+    db.commit()
+
+
+frame4_tittle = tk.Label(frame4, bg="grey")
+frame4_tittle.place(x=0, y=0, width=1355, height=700)
+
+lo1 = tk.Label(frame4, text="Registration Form", font=("Bahnschrift", 30), bg="grey", fg="white").place(x=0, y=10,
+                                                                                                        width=500)
+lo1 = tk.Label(frame4, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=119, height=10, width=1350)
+lo1 = tk.Label(frame4, text="Premium Room", font=("Bahnschrift", 30), bg="grey", fg="white").place(x=0, y=65, width=500)
+lo1 = tk.Label(frame4, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=150, height=35, width=1350)
+lo3 = tk.Label(frame4, text="Name  ", font=("Arial Rounded MT Bold", 19), bd=5, bg="darkgrey").place(x=200, y=150,
+                                                                                                     height=35)
+e1 = tk.Entry(frame4, bd=3, font=("Arial", 15), relief="groove", textvariable=Nmpr).place(x=680, y=153, width=620,
+                                                                                          height=30)
+
+lo1 = tk.Label(frame4, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=200, height=35, width=1350)
+lo3 = tk.Label(frame4, text="Phone No.  ", font=("Arial Rounded MT Bold", 19), bd=5, bg="darkgrey").place(x=200, y=200,
+                                                                                                          height=35)
+e1 = tk.Entry(frame4, bd=3, font=("Arial", 15), relief="groove", textvariable=Phpr).place(x=680, y=201, width=620,
+                                                                                          height=30)
+
+lo1 = tk.Label(frame4, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=247, height=35, width=1350)
+lo3 = tk.Label(frame4, text="Aadhaar No.  ", font=("Arial Rounded MT Bold", 19), bd=5, bg="darkgrey").place(x=200,
+                                                                                                            y=247,
+                                                                                                            height=35)
+e1 = tk.Entry(frame4, bd=3, font=("Arial", 15), relief="groove", textvariable=Adar).place(x=680, y=248, width=620,
+                                                                                          height=30)
+
+lo1 = tk.Label(frame4, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=294, height=35, width=1350)
+lo3 = tk.Label(frame4, text="Email ID  ", font=("Arial Rounded MT Bold", 19), bd=5, bg="darkgrey").place(x=200, y=294,
+                                                                                                         height=35)
+e1 = tk.Entry(frame4, bd=3, font=("Arial", 15), relief="groove", textvariable=Empr).place(x=680, y=295, width=620,
+                                                                                          height=30)
+
+lo1 = tk.Label(frame4, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=341, height=35, width=1350)
+lo3 = tk.Label(frame4, text="Address  ", font=("Arial Rounded MT Bold", 19), bd=5, bg="darkgrey").place(x=200, y=341,
+                                                                                                        height=35)
+e1 = tk.Entry(frame4, bd=3, font=("Arial", 15), relief="groove", textvariable=Adpr).place(x=680, y=341, width=620,
+                                                                                          height=30)
+
+lo1 = tk.Label(frame4, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=388, height=35, width=1350)
+lo3 = tk.Label(frame4, text="City  ", font=("Arial Rounded MT Bold", 19), bd=5, bg="darkgrey").place(x=200, y=388,
+                                                                                                     height=35)
+e1 = tk.Entry(frame4, bd=3, font=("Arial", 15), relief="groove", textvariable=Ctpr).place(x=680, y=389, width=620,
+                                                                                          height=30)
+
+lo1 = tk.Label(frame4, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=435, height=35, width=1350)
+lo_3 = tk.Label(frame4, text="State  ", font=("Arial Rounded MT Bold", 19), bd=5, bg="darkgrey").place(x=200, y=435,
+                                                                                                       height=35)
+e41 = tk.Entry(frame4, bd=3, font=("Arial", 15), relief="groove", textvariable=Stpr).place(x=680, y=436, width=620,
+                                                                                           height=30)
+
+lo14 = tk.Label(frame4, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=482, height=35, width=1350)
+lo43 = tk.Label(frame4, text="Age  ", font=("Arial Rounded MT Bold", 19), bd=5, bg="darkgrey").place(x=200, y=482,
+                                                                                                     height=35)
+v1 = list(range(18, 90))
+combo1 = Combobox(frame4, values=v1)
+combo1.place(x=400, y=487, width=150, height=27)
+combo1.set("Select")
+
+lo3 = tk.Label(frame4, text="Gender ", font=("Arial Rounded MT Bold", 19), bd=5, bg="darkgrey").place(x=820, y=482,
+                                                                                                      height=35)
+v2 = ["Male", "Female", "Other"]
+combo2 = Combobox(frame4, values=v2)
+combo2.place(x=985, y=486, width=150, height=27)
+combo2.set("Select")
+
+lo1 = tk.Label(frame4, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=534, height=35, width=1350)
+lo3 = tk.Label(frame4, text="No. of Days to Stay ", font=("Arial Rounded MT Bold", 19), bd=5, bg="darkgrey").place(
+    x=200, y=534, height=35)
+v4 = list(range(1, 100))
+combo4 = Combobox(frame4, values=v4)
+combo4.place(x=820, y=538, width=190, height=27)
+combo4.set("Select")
+lo1 = tk.Label(frame4, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=588, height=10, width=1350)
+
+lo1 = tk.Label(frame4, font=("Bahnschrift", 30), bg="white").place(x=246, y=607, height=51, width=259)
+B12 = tk.Button(frame4, text="Save", font=("Bahnschrift SemiCondensed", 15), bg="grey", cursor="hand2",
+                command=check_pr,
+                activebackground="darkgrey", bd=1).place(x=250, y=610,
+                                                         width=250,
+
+                                                         height=45)
+lo1 = tk.Label(frame4, font=("Bahnschrift", 30), bg="white").place(x=546, y=607, height=51, width=259)
+B12 = tk.Button(frame4, text="Clear", font=("Bahnschrift SemiCondensed", 15), bg="grey", cursor="hand2",
+                command=clear_pr,
+                activebackground="darkgrey", bd=1).place(x=550, y=610,
+                                                         width=250,
+
+                                                         height=45)
+lo1 = tk.Label(frame4, font=("Bahnschrift", 30), bg="white").place(x=846, y=608, height=51, width=259)
+B12 = tk.Button(frame4, text="Exit", font=("Bahnschrift SemiCondensed", 15), command=lambda: show_frame(frame3),
+                bg="grey", cursor="hand2", activebackground="darkgrey", bd=1).place(x=850, y=610,
+                                                                                    width=250,
+
+                                                                                    height=45)
+
+frame5_tittle = tk.Label(frame5, bg="grey").place(x=0, y=0, width=1350, height=800)
+
+# =================delux room========#
+Nmdx = StringVar()
+Phdx = StringVar()
+Adhdx = StringVar()
+Emdx = StringVar()
+Adrdx = StringVar()
+Ctdx = StringVar()
+Stdx = StringVar()
+
+
+def check_dux():
+    flag = 0
+    flag_2 = 0
+    flag_3 = 0
+    flag_4 = 0
+    pass1 = 0
+    pass2 = 0
+    pass3 = 0
+    pass4 = 0
+    pass5 = 0
+    ad_dux = Adhdx.get()
+    ph_dux = Phdx.get()
+    em_dux = Emdx.get()
+    nm_dux = Nmdx.get()
+    adr_dux = Adrdx.get()
+    ct_dux = Ctdx.get()
+    st_dux = Stdx.get()
+    count_1 = len(ad_dux)
+    count_2 = len(ph_dux)
+    if (
+            nm_dux == '' and ad_dux == '' and ph_dux == '' and adr_dux == '' and ct_dux == '' and st_dux == '' and em_dux == ''):
+        Nmdx.set("Name Field is Empty !")
+        Adhdx.set("Aadhaar Field is Empty !")
+        Phdx.set("Phone Number Field is Empty !")
+        Adrdx.set("Address Field is Empty !")
+        Ctdx.set("City Field is Empty !")
+        Stdx.set("State Field is Empty !")
+        Emdx.set("Email ID Field is Empty !")
+    elif (nm_dux == ''):
+        Nmdx.set("Name Field is Empty !")
+    elif (ad_dux == ''):
+        Adhdx.set("Aadhaar Field is Empty !")
+    elif (ph_dux == ''):
+        Phdx.set("Phone Number Field is Empty !")
+    elif (adr_dux == ''):
+        Adrdx.set("Address Field is Empty !")
+    elif (ct_dux == ''):
+        Ctdx.set("City Field is Empty !")
+    elif (st_dux == ''):
+        Stdx.set("State Field is Empty !")
+    elif (em_dux == ''):
+        Emdx.set("Email ID Field is Empty !")
+    else:
+        if ((count_1 < 12 and count_2 < 10) or (count_1 > 12 and count_2 > 10)):
+            Adhdx.set("Enter 12 Digit Aadhaar Number !")
+            Phdx.set("Enter 10 Digit Phone Number !")
+        elif (count_1 < 12 or count_1 > 12):
+            Adhdx.set("Enter 12 Digit Aadhaar Number !")
+        elif (count_2 < 10 or count_2 > 10):
+            Phdx.set("Enter 10 Digit Phone Number !")
+        else:
+            pass1 = 1
+
+            for i in nm_dux:
+                if (i >= '0' and i <= '9'):
+                    flag_2 = 1
+            if (flag_2 == 1):
+                Nmdx.set("Enter Alphabets Only !")
+            else:
+                pass2 = 1
+
+        for j in ct_dux:
+            if (j >= '0' and j <= '9'):
+                flag_3 = 1
+        if (flag_3 == 1):
+            Ctdx.set("Enter Alphabets Only !")
+        else:
+            pass3 = 1
+
+        for k in st_dux:
+            if (k >= '0' and k <= '9'):
+                flag_4 = 1
+        if (flag_4 == 1):
+            Stdx.set("Enter Alphabets Only !")
+        else:
+            pass4 = 1
+
+        for i in em_dux:
+            if (i == '@'):
+                flag = 1
+
+        if (flag == 1):
+            pass5 = 1
+        else:
+            Emdx.set("Enter Valid Email ID !")
+    if (pass1 == 1 and pass2 == 1 and pass3 == 1 and pass4 == 1 and pass5 == 1):
+        insert_dlx()
+        messagebox.showinfo("Success", "Details are Saved :)")
+    else:
+        messagebox.showerror("Error", "Review your Credentials once again !")
+
+
+def clear_dux():
+    Nmdx.set('')
+    Phdx.set('')
+    Adhdx.set('')
+    Emdx.set('')
+    Adrdx.set('')
+    Ctdx.set('')
+    Stdx.set('')
+    combo5.set("Select")
+    combo6.set("select")
+    combo7.set("Select")
+
+
+def insert_dlx():
+    N2 = Nmdx.get()
+    P2 = Phdx.get()
+    AA2 = Adhdx.get()
+    E2 = Emdx.get()
+    A2 = Adrdx.get()
+    C2 = Ctdx.get()
+    S2 = Stdx.get()
+    c5 = combo5.get()
+    c6 = combo6.get()
+    c7 = combo7.get()
+
+    cursor.execute(
+        "create table if not exists JW_delx(Name text,Phonenumber text,Aadhaarnumber text,EmailId text,Address text,City text,State text,Age text,Gender text,Dstay )")
+    cursor.execute(
+        'insert into JW_delx(Name,Phonenumber,Aadhaarnumber,EmailId,Address,City,State,Age,Gender,Dstay) values(?,?,?,?,?,?,?,?,?,?)',
+        (N2, P2, AA2, E2, A2, C2, S2, c5, c6, c7))
+    db.commit()
+
+
+frame4_tittle = tk.Label(frame6, bg="grey")
+frame4_tittle.place(x=0, y=0, width=1355, height=700)
+
+lo1 = tk.Label(frame6, text="Registration Form", font=("Bahnschrift", 30), bg="grey", fg="white").place(x=0, y=10,
+                                                                                                        width=500)
+lo1 = tk.Label(frame6, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=119, height=10, width=1350)
+lo1 = tk.Label(frame6, text="Delux Room", font=("Bahnschrift", 30), bg="grey", fg="white").place(x=0, y=65, width=500)
+lo1 = tk.Label(frame6, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=150, height=35, width=1350)
+lo3 = tk.Label(frame6, text="Name  ", font=("Arial Rounded MT Bold", 19), bd=5, bg="darkgrey").place(x=200, y=150,
+                                                                                                     height=35)
+e1 = tk.Entry(frame6, bd=3, font=("Arial", 15), relief="groove", textvariable=Nmdx).place(x=680, y=153, width=620,
+                                                                                          height=30)
+
+lo1 = tk.Label(frame6, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=200, height=35, width=1350)
+lo3 = tk.Label(frame6, text="Phone No.  ", font=("Arial Rounded MT Bold", 19), bd=5, bg="darkgrey").place(x=200, y=200,
+                                                                                                          height=35)
+e1 = tk.Entry(frame6, bd=3, font=("Arial", 15), relief="groove", textvariable=Phdx).place(x=680, y=201, width=620,
+                                                                                          height=30)
+
+lo1 = tk.Label(frame6, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=247, height=35, width=1350)
+lo3 = tk.Label(frame6, text="Aadhaar No.  ", font=("Arial Rounded MT Bold", 19), bd=5, bg="darkgrey").place(x=200,
+                                                                                                            y=247,
+                                                                                                            height=35)
+e1 = tk.Entry(frame6, bd=3, font=("Arial", 15), relief="groove", textvariable=Adhdx).place(x=680, y=248, width=620,
+                                                                                           height=30)
+
+lo1 = tk.Label(frame6, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=294, height=35, width=1350)
+lo3 = tk.Label(frame6, text="Email ID  ", font=("Arial Rounded MT Bold", 19), bd=5, bg="darkgrey").place(x=200, y=294,
+                                                                                                         height=35)
+e1 = tk.Entry(frame6, bd=3, font=("Arial", 15), relief="groove", textvariable=Emdx).place(x=680, y=295, width=620,
+                                                                                          height=30)
+
+lo1 = tk.Label(frame6, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=341, height=35, width=1350)
+lo3 = tk.Label(frame6, text="Address  ", font=("Arial Rounded MT Bold", 19), bd=5, bg="darkgrey").place(x=200, y=341,
+                                                                                                        height=35)
+e1 = tk.Entry(frame6, bd=3, font=("Arial", 15), relief="groove", textvariable=Adrdx).place(x=680, y=341, width=620,
+                                                                                           height=30)
+
+lo1 = tk.Label(frame6, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=388, height=35, width=1350)
+lo3 = tk.Label(frame6, text="City  ", font=("Arial Rounded MT Bold", 19), bd=5, bg="darkgrey").place(x=200, y=388,
+                                                                                                     height=35)
+e1 = tk.Entry(frame6, bd=3, font=("Arial", 15), relief="groove", textvariable=Ctdx).place(x=680, y=389, width=620,
+                                                                                          height=30)
+
+lo1 = tk.Label(frame6, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=435, height=35, width=1350)
+lo3 = tk.Label(frame6, text="State  ", font=("Arial Rounded MT Bold", 19), bd=5, bg="darkgrey").place(x=200, y=435,
+                                                                                                      height=35)
+e1 = tk.Entry(frame6, bd=3, font=("Arial", 15), relief="groove", textvariable=Stdx).place(x=680, y=436, width=620,
+                                                                                          height=30)
+
+lo1 = tk.Label(frame6, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=482, height=35, width=1350)
+lo3 = tk.Label(frame6, text="Age  ", font=("Arial Rounded MT Bold", 19), bd=5, bg="darkgrey").place(x=200, y=482,
+                                                                                                    height=35)
+v5 = list(range(18, 90))
+combo5 = Combobox(frame6, values=v5)
+combo5.place(x=400, y=487, width=150, height=27)
+combo5.set("Select")
+
+lo3 = tk.Label(frame6, text="Gender ", font=("Arial Rounded MT Bold", 19), bd=5, bg="darkgrey").place(x=820, y=482,
+                                                                                                      height=35)
+v6 = ["Male", "Female", "Other"]
+combo6 = Combobox(frame6, values=v6)
+combo6.place(x=985, y=486, width=150, height=27)
+combo6.set("Select")
+
+lo1 = tk.Label(frame6, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=534, height=35, width=1350)
+lo3 = tk.Label(frame6, text="No. of Days to Stay ", font=("Arial Rounded MT Bold", 19), bd=5, bg="darkgrey").place(
+    x=200, y=534, height=35)
+v7 = list(range(1, 100))
+combo7 = Combobox(frame6, values=v7)
+combo7.place(x=820, y=538, width=190, height=27)
+combo7.set("Select")
+lo1 = tk.Label(frame6, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=588, height=10, width=1350)
+
+lo1 = tk.Label(frame6, font=("Bahnschrift", 30), bg="white").place(x=246, y=607, height=51, width=259)
+B12 = tk.Button(frame6, text="Save", font=("Bahnschrift SemiCondensed", 15), bg="grey", cursor="hand2",
+                command=check_dux,
+                activebackground="darkgrey", bd=1).place(x=250, y=610,
+                                                         width=250,
+
+                                                         height=45)
+lo1 = tk.Label(frame6, font=("Bahnschrift", 30), bg="white").place(x=546, y=607, height=51, width=259)
+B12 = tk.Button(frame6, text="Clear", font=("Bahnschrift SemiCondensed", 15), bg="grey", cursor="hand2",
+                command=clear_dux,
+                activebackground="darkgrey", bd=1).place(x=550, y=610,
+                                                         width=250,
+
+                                                         height=45)
+lo1 = tk.Label(frame6, font=("Bahnschrift", 30), bg="white").place(x=846, y=608, height=51, width=259)
+B12 = tk.Button(frame6, text="Exit", font=("Bahnschrift SemiCondensed", 15), command=lambda: show_frame(frame3),
+                bg="grey", cursor="hand2", activebackground="darkgrey", bd=1).place(x=850, y=610,
+                                                                                    width=250,
+
+                                                                                    height=45)
+
+# =================================Luxury Room=============================#
+Nmlx = StringVar()
+Phlx = StringVar()
+Adhlx = StringVar()
+Emlx = StringVar()
+Adrlx = StringVar()
+Ctlx = StringVar()
+Stlx = StringVar()
+
+
+def check_lux():
+    flag = 0
+    flag_2 = 0
+    flag_3 = 0
+    flag_4 = 0
+    pass1 = 0
+    pass2 = 0
+    pass3 = 0
+    pass4 = 0
+    pass5 = 0
+    ad_lux = Adhlx.get()
+    ph_lux = Phlx.get()
+    em_lux = Emlx.get()
+    nm_lux = Nmlx.get()
+    adr_lux = Adrlx.get()
+    ct_lux = Ctlx.get()
+    st_lux = Stlx.get()
+    count_1 = len(ad_lux)
+    count_2 = len(ph_lux)
+    if (
+            nm_lux == '' and ad_lux == '' and ph_lux == '' and adr_lux == '' and ct_lux == '' and st_lux == '' and em_lux == ''):
+        Nmlx.set("Name Field is Empty !")
+        Adhlx.set("Aadhaar Field is Empty !")
+        Phlx.set("Phone Number Field is Empty !")
+        Adrlx.set("Address Field is Empty !")
+        Ctlx.set("City Field is Empty !")
+        Stlx.set("State Field is Empty !")
+        Emlx.set("Email ID Field is Empty !")
+    elif (nm_lux == ''):
+        Nmlx.set("Name Field is Empty !")
+    elif (ad_lux == ''):
+        Adhlx.set("Aadhaar Field is Empty !")
+    elif (ph_lux == ''):
+        Phlx.set("Phone Number Field is Empty !")
+    elif (adr_lux == ''):
+        Adrlx.set("Address Field is Empty !")
+    elif (ct_lux == ''):
+        Ctlx.set("City Field is Empty !")
+    elif (st_lux == ''):
+        Stlx.set("State Field is Empty !")
+    elif (em_lux == ''):
+        Emlx.set("Email ID Field is Empty !")
+    else:
+        if ((count_1 < 12 and count_2 < 10) or (count_1 > 12 and count_2 > 10)):
+            Adhlx.set("Enter 12 Digit Aadhaar Number !")
+            Phlx.set("Enter 10 Digit Phone Number !")
+        elif (count_1 < 12 or count_1 > 12):
+            Adhlx.set("Enter 12 Digit Aadhaar Number !")
+        elif (count_2 < 10 or count_2 > 10):
+            Phlx.set("Enter 10 Digit Phone Number !")
+        else:
+            pass1 = 1
+
+            for i in nm_lux:
+                if (i >= '0' and i <= '9'):
+                    flag_2 = 1
+            if (flag_2 == 1):
+                Nmlx.set("Enter Alphabets Only !")
+            else:
+                pass2 = 1
+
+        for j in ct_lux:
+            if (j >= '0' and j <= '9'):
+                flag_3 = 1
+        if (flag_3 == 1):
+            Ctlx.set("Enter Alphabets Only !")
+        else:
+            pass3 = 1
+
+        for k in st_lux:
+            if (k >= '0' and k <= '9'):
+                flag_4 = 1
+        if (flag_4 == 1):
+            Stlx.set("Enter Alphabets Only !")
+        else:
+            pass4 = 1
+
+        for i in em_lux:
+            if (i == '@'):
+                flag = 1
+
+        if (flag == 1):
+            pass5 = 1
+        else:
+            Emlx.set("Enter Valid Email ID !")
+    if (pass1 == 1 and pass2 == 1 and pass3 == 1 and pass4 == 1 and pass5 == 1):
+        insert_lux()
+        messagebox.showinfo("Success", "Details are Saved :)")
+    else:
+        messagebox.showerror("Error", "Review your Credentials once again !")
+
+
+def clear_lux():
+    Nmlx.set('')
+    Phlx.set('')
+    Adhlx.set('')
+    Emlx.set('')
+    Adrlx.set('')
+    Ctlx.set('')
+    Stlx.set('')
+    combo8.set("Select")
+    combo9.set("select")
+    combo10.set("Select")
+
+
+def insert_lux():
+    N3 = Nmlx.get()
+    P3 = Phlx.get()
+    AA3 = Adhlx.get()
+    E3 = Emlx.get()
+    A3 = Adrlx.get()
+    C3 = Ctlx.get()
+    S3 = Stlx.get()
+    c8 = combo8.get()
+    c9 = combo9.get()
+    c10 = combo10.get()
+
+    cursor.execute(
+        "create table if not exists JW_lux(Name text,Phonenumber text,Aadhaarnumber text,EmailId text,Address text,City text,State text,Age text,Gender text,Dstay )")
+    cursor.execute(
+        'insert into JW_lux(Name,Phonenumber,Aadhaarnumber,EmailId,Address,City,State,Age,Gender,Dstay) values(?,?,?,?,?,?,?,?,?,?)',
+        (N3, P3, AA3, E3, A3, C3, S3, c8, c9, c10))
+    db.commit()
+
+
+frame4_tittle = tk.Label(frame7, bg="grey")
+frame4_tittle.place(x=0, y=0, width=1355, height=700)
+
+lo1 = tk.Label(frame7, text="Registration Form", font=("Bahnschrift", 30), bg="grey", fg="white").place(x=0, y=10,
+                                                                                                        width=500)
+lo1 = tk.Label(frame7, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=119, height=10, width=1350)
+lo1 = tk.Label(frame7, text="Luxury Room", font=("Bahnschrift", 30), bg="grey", fg="white").place(x=0, y=65, width=500)
+lo1 = tk.Label(frame7, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=150, height=35, width=1350)
+lo3 = tk.Label(frame7, text="Name  ", font=("Arial Rounded MT Bold", 19), bd=5, bg="darkgrey").place(x=200, y=150,
+                                                                                                     height=35)
+e1 = tk.Entry(frame7, bd=3, font=("Arial", 15), relief="groove", textvariable=Nmlx).place(x=680, y=153, width=620,
+                                                                                          height=30)
+
+lo1 = tk.Label(frame7, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=200, height=35, width=1350)
+lo3 = tk.Label(frame7, text="Phone No.  ", font=("Arial Rounded MT Bold", 19), bd=5, bg="darkgrey").place(x=200, y=200,
+                                                                                                          height=35)
+e1 = tk.Entry(frame7, bd=3, font=("Arial", 15), relief="groove", textvariable=Phlx).place(x=680, y=201, width=620,
+                                                                                          height=30)
+
+lo1 = tk.Label(frame7, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=247, height=35, width=1350)
+lo3 = tk.Label(frame7, text="Aadhaar No.  ", font=("Arial Rounded MT Bold", 19), bd=5, bg="darkgrey").place(x=200,
+                                                                                                            y=247,
+                                                                                                            height=35)
+e1 = tk.Entry(frame7, bd=3, font=("Arial", 15), relief="groove", textvariable=Adhlx).place(x=680, y=248, width=620,
+                                                                                           height=30)
+
+lo1 = tk.Label(frame7, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=294, height=35, width=1350)
+lo3 = tk.Label(frame7, text="Email ID  ", font=("Arial Rounded MT Bold", 19), bd=5, bg="darkgrey").place(x=200, y=294,
+                                                                                                         height=35)
+e1 = tk.Entry(frame7, bd=3, font=("Arial", 15), relief="groove", textvariable=Emlx).place(x=680, y=295, width=620,
+                                                                                          height=30)
+
+lo1 = tk.Label(frame7, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=341, height=35, width=1350)
+lo3 = tk.Label(frame7, text="Address  ", font=("Arial Rounded MT Bold", 19), bd=5, bg="darkgrey").place(x=200, y=341,
+                                                                                                        height=35)
+e1 = tk.Entry(frame7, bd=3, font=("Arial", 15), relief="groove", textvariable=Adrlx).place(x=680, y=341, width=620,
+                                                                                           height=30)
+
+lo1 = tk.Label(frame7, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=388, height=35, width=1350)
+lo3 = tk.Label(frame7, text="City  ", font=("Arial Rounded MT Bold", 19), bd=5, bg="darkgrey").place(x=200, y=388,
+                                                                                                     height=35)
+e1 = tk.Entry(frame7, bd=3, font=("Arial", 15), relief="groove", textvariable=Ctlx).place(x=680, y=389, width=620,
+                                                                                          height=30)
+
+lo1 = tk.Label(frame7, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=435, height=35, width=1350)
+lo3 = tk.Label(frame7, text="State  ", font=("Arial Rounded MT Bold", 19), bd=5, bg="darkgrey").place(x=200, y=435,
+                                                                                                      height=35)
+e1 = tk.Entry(frame7, bd=3, font=("Arial", 15), relief="groove", textvariable=Stlx).place(x=680, y=436, width=620,
+                                                                                          height=30)
+
+lo1 = tk.Label(frame7, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=482, height=35, width=1350)
+lo3 = tk.Label(frame7, text="Age  ", font=("Arial Rounded MT Bold", 19), bd=5, bg="darkgrey").place(x=200, y=482,
+                                                                                                    height=35)
+v8 = list(range(18, 90))
+combo8 = Combobox(frame7, values=v8)
+combo8.place(x=400, y=487, width=150, height=27)
+combo8.set("Select")
+
+lo3 = tk.Label(frame7, text="Gender ", font=("Arial Rounded MT Bold", 19), bd=5, bg="darkgrey").place(x=820, y=482,
+                                                                                                      height=35)
+v9 = ["Male", "Female", "Other"]
+combo9 = Combobox(frame7, values=v9)
+combo9.place(x=985, y=486, width=150, height=27)
+combo9.set("Select")
+
+lo1 = tk.Label(frame7, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=534, height=35, width=1350)
+lo3 = tk.Label(frame7, text="No. of Days to Stay ", font=("Arial Rounded MT Bold", 19), bd=5, bg="darkgrey").place(
+    x=200, y=534, height=35)
+v10 = list(range(1, 100))
+combo10 = Combobox(frame7, values=v10)
+combo10.place(x=820, y=538, width=190, height=27)
+combo10.set("Select")
+lo1 = tk.Label(frame7, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=588, height=10, width=1350)
+
+lo1 = tk.Label(frame7, font=("Bahnschrift", 30), bg="white").place(x=246, y=607, height=51, width=259)
+B12 = tk.Button(frame7, text="Save", font=("Bahnschrift SemiCondensed", 15), bg="grey", cursor="hand2",
+                command=check_lux,
+                activebackground="darkgrey", bd=1).place(x=250, y=610,
+                                                         width=250,
+
+                                                         height=45)
+lo1 = tk.Label(frame7, font=("Bahnschrift", 30), bg="white").place(x=546, y=607, height=51, width=259)
+B12 = tk.Button(frame7, text="Clear", font=("Bahnschrift SemiCondensed", 15), bg="grey", cursor="hand2",
+                command=clear_lux,
+                activebackground="darkgrey", bd=1).place(x=550, y=610,
+                                                         width=250,
+
+                                                         height=45)
+lo1 = tk.Label(frame7, font=("Bahnschrift", 30), bg="white").place(x=846, y=608, height=51, width=259)
+B12 = tk.Button(frame7, text="Exit", font=("Bahnschrift SemiCondensed", 15), command=lambda: show_frame(frame3),
+                bg="grey", cursor="hand2", activebackground="darkgrey", bd=1).place(x=850, y=610,
+                                                                                    width=250,
+
+                                                                                    height=45)
+
+frame5_tittle = tk.Label(frame5, bg="grey").place(x=0, y=0, width=1350, height=800)
+
+fr11 = tk.Frame(frame5, relief="groove", bd=5).place(x=595, y=177, width=431, height=450)
+lo122 = tk.Label(frame5, text="-::Bill Area::-", font=("Copperplate Gothic Bold", 15), bd=5, bg="grey",
+                 fg="white").place(
+    x=600, y=180, width=417)
+
+box1 = tk.Text(frame5, width=46, height=21, wrap='word', font=("Arial", 12, "bold"))
+box1.place(x=600, y=216)
+# =====================================================Eatery Frame=====================================================================#
+name1 = IntVar()
+name2 = IntVar()
+name3 = IntVar()
+name4 = IntVar()
+name5 = IntVar()
+name6 = IntVar()
+name7 = IntVar()
+name8 = IntVar()
+name9 = IntVar()
+name10 = IntVar()
+name11 = IntVar()
+name12 = IntVar()
+name13 = IntVar()
+name14 = IntVar()
+name15 = IntVar()
+name16 = IntVar()
+# ================================Desert Variables==============#
+n1 = IntVar()
+n2 = IntVar()
+n3 = IntVar()
+n4 = IntVar()
+n5 = IntVar()
+n6 = IntVar()
+n7 = IntVar()
+n8 = IntVar()
+n9 = IntVar()
+n10 = IntVar()
+n11 = IntVar()
+n12 = IntVar()
+n13 = IntVar()
+n14 = IntVar()
+n15 = IntVar()
+n16 = IntVar()
+# =============================================TEXT Billing=======================================#
+bil_no = StringVar()
+z = random.randint(1000, 9999)
+bil_no.set(str(z))
+namex = StringVar()
+namep = StringVar()
+
+
+def gent():
+    x = namex.get()
+    y = namep.get()
+    k = bil_no.get()
+    mm = d1.get()
+    gst = d2.get()
+
+    box1.delete('1.0', END)
+    box1.insert(INSERT, "----------------------------------------------------------------------------------")
+    box1.insert(INSERT, "\n                             Hotel JW Marriott")
+    box1.insert(INSERT, "\n----------------------------------------------------------------------------------")
+    box1.insert(END, f"\nName:            {str(x)}")
+    box1.insert(END, f"\n\nPhone No.:             {str(y)}")
+    box1.insert(END, f"\n\nBill No.:             {str(k)}")
+    box1.insert(END, f"\n\nAmount:               {str(mm)}")  # ======Amount is Shown in the bill=====#
+    box1.insert(END, f"\n\nGST:                  {str(gst)}")  # ======GST is Shown in the bill=====#
+    box1.insert(INSERT, "\n==============================================")
+    box1.insert(INSERT, "\n  DISH                                  PLATE                         PRICE")
+    box1.insert(INSERT, "\n==============================================")
+
+
+def gent_2():
+    gent()
+
+    w1 = (name1.get() * 40)
+    w2 = (name2.get() * 50)
+    w3 = (name3.get() * 80)
+    w4 = (name4.get() * 75)
+    w5 = (name5.get() * 55)
+    w6 = (name6.get() * 150)
+    w7 = (name7.get() * 90)
+    w8 = (name8.get() * 95)
+    w9 = (name9.get() * 200)
+    w10 = (name10.get() * 65)
+    w11 = (name11.get() * 93)
+    w12 = (name12.get() * 70)
+    w13 = (name13.get() * 54)
+    w14 = (name14.get() * 57)
+    w15 = (name15.get() * 71)
+    w16 = (name16.get() * 49)
+
+    k1 = (n1.get() * 35)
+    k2 = (n2.get() * 70)
+    k3 = (n3.get() * 150)
+    k4 = (n4.get() * 70)
+    k5 = (n5.get() * 60)
+    k6 = (n6.get() * 150)
+    k7 = (n7.get() * 90)
+    k8 = (n8.get() * 30)
+    k9 = (n9.get() * 25)
+    k10 = (n10.get() * 90)
+    k11 = (n11.get() * 65)
+    k12 = (n12.get() * 40)
+    k13 = (n13.get() * 47)
+    k14 = (n14.get() * 55)
+    k15 = (n15.get() * 20)
+    k16 = (n16.get() * 30)
+
+    if (name1.get() != 0):
+        box1.insert(END, f"\nPanner Masala  \t\t\t {name1.get()}\t\t{w1} ")
+    if (name2.get() != 0):
+        box1.insert(END, f"\nMalai Kofta     \t\t\t {name2.get()}\t\t{w2}  ")
+    if (name3.get() != 0):
+        box1.insert(END, f"\nFried Rice      \t\t\t{name3.get()}\t\t{w3}  ")
+    if (name4.get() != 0):
+        box1.insert(END, f"\nDal Makhani      \t\t\t{name4.get()}\t\t{w4}  ")
+    if (name5.get() != 0):
+        box1.insert(END, f"\nRajma            \t\t\t{name5.get()}\t\t{w5}  ")
+    if (name6.get() != 0):
+        box1.insert(END, f"\nMushroom Masala   \t\t\t{name6.get()}\t\t{w6}  ")
+    if (name7.get() != 0):
+        box1.insert(END, f"\nChole             \t\t\t{name7.get()}\t\t{w7}  ")
+    if (name8.get() != 0):
+        box1.insert(END, f"\nNoodle Soup       \t\t\t{name8.get()}\t\t{w8}  ")
+    if (name9.get() != 0):
+        box1.insert(END, f"\nTomato Soup       \t\t\t{name9.get()}\t\t{w9}  ")
+    if (name10.get() != 0):
+        box1.insert(END, f"\nPlatter          \t\t\t{name10.get()}\t\t{w10}  ")
+    if (name11.get() != 0):
+        box1.insert(END, f"\nSpring Roll      \t\t\t{name11.get()}\t\t{w11}  ")
+    if (name12.get() != 0):
+        box1.insert(END, f"\nDosa             \t\t\t{name12.get()}\t\t{w12}  ")
+    if (name13.get() != 0):
+        box1.insert(END, f"\nUttapam           \t\t\t{name13.get()}\t\t{w13}  ")
+    if (name14.get() != 0):
+        box1.insert(END, f"\nYellow Dal        \t\t\t{name14.get()}\t\t{w14}  ")
+    if (name15.get() != 0):
+        box1.insert(END, f"\nTandori Roti       \t\t\t{name15.get()}\t\t{w15}  ")
+    if (name16.get() != 0):
+        box1.insert(END, f"\nPlain Naan         \t\t\t{name16.get()}\t\t{w16}  ")
+    if (n1.get() != 0):
+        box1.insert(END, f"\nButter Scotch       \t\t\t{n1.get()}\t\t{k1} ")
+    if (n2.get() != 0):
+        box1.insert(END, f"\nKesar Pista         \t\t\t{n2.get()}\t\t{k2}  ")
+    if (n3.get() != 0):
+        box1.insert(END, f"\nBlack Currant        \t\t\t{n3.get()}\t\t{k3}  ")
+    if (n4.get() != 0):
+        box1.insert(END, f"\nPista Kheer          \t\t\t{n4.get()}\t\t{k4}  ")
+    if (n5.get() != 0):
+        box1.insert(END, f"\nIce Cream            \t\t\t{n5.get()}\t\t{k5}  ")
+    if (n6.get() != 0):
+        box1.insert(END, f"\nMakhan Mali           \t\t\t{n6.get()}\t\t{k6}  ")
+    if (n7.get() != 0):
+        box1.insert(END, f"\nMalpua                \t\t\t{n7.get()}\t\t{k7}  ")
+    if (n8.get() != 0):
+        box1.insert(END, f"\nBasundi               \t\t\t{n8.get()}\t\t{k8}  ")
+    if (n9.get() != 0):
+        box1.insert(END, f"\nRasgulla              \t\t\t{n9.get()}\t\t{k9}  ")
+    if (n10.get() != 0):
+        box1.insert(END, f"\nGhevar                \t\t\t{n10.get()}\t\t{k10}  ")
+    if (n11.get() != 0):
+        box1.insert(END, f"\nGajar Ka Halwa        \t\t\t{n11.get()}\t\t{k11}  ")
+    if (n12.get() != 0):
+        box1.insert(END, f"\nSandesh               \t\t\t{n12.get()}\t\t{k12}  ")
+    if (n13.get() != 0):
+        box1.insert(END, f"\nPuran Poli            \t\t\t{n13.get()}\t\t{k13}  ")
+    if (n14.get() != 0):
+        box1.insert(END, f"\nShahi Tukda           \t\t\t{n14.get()}\t\t{k14}  ")
+    if (n15.get() != 0):
+        box1.insert(END, f"\nModak                 \t\t\t{n15.get()}\t\t{k15}  ")
+    if (n16.get() != 0):
+        box1.insert(END, f"\nPayasam               \t\t\t{n16.get()}\t\t{k16}  ")
+
+
+fo2 = Label(frame5, text="Our Food Service ", font=("Bahnschrift SemiBold", 30), bd=0, relief="groove", fg="white",
+            bg="grey").place(x=0, y=15, width=1350, height=35)
+lo1 = tk.Label(frame5, font=("Bahnschrift", 30), bg="darkgrey").place(x=0, y=56, height=10, width=1350)
+fo3 = tk.LabelFrame(frame5, text="Customer Details", font=("Bahnschrift SemiCondensed", 15), fg="black",
+                    bg="darkgrey", relief="groove", bd=0).place(x=0, y=100, width=1350, height=76)
+fo4 = tk.Label(frame5, text="Name", font=("Bahnschrift SemiBold", 15), bd=5, bg="darkgrey").place(x=139, y=120)
+
+ft1 = tk.Entry(frame5, font=("Arial", 15), textvariable=namex).place(x=240, y=125, width=320)
+
+fo5 = tk.Label(frame5, text="Phone No.", font=("Bahnschrift SemiBold", 15), bd=5, bg="darkgrey").place(x=630, y=120)
+ft2 = tk.Entry(frame5, font=("Arial", 15), textvariable=namep).place(x=780, y=125, width=320)
+frm1 = tk.LabelFrame(frame5, text="Main course", font=("Bahnschrift SemiCondensed", 15), bg="darkgrey", bd=1).place(x=0,
+                                                                                                                    y=165,
+                                                                                                                    width=300,
+                                                                                                                    height=530)
+
+frm2 = tk.LabelFrame(frame5, text="Dessert", font=("Bahnschrift SemiCondensed", 15), bg="darkgrey", bd=1).place(
+    x=297, y=165, width=300, height=530)
+
+lf = tk.Label(frame5, text="PLATES", font=("Bahnschrift SemiBold", 11), bd=5, bg="darkgrey").place(x=234, y=180,
+                                                                                                   width=61, height=20)
+lf2 = tk.Label(frame5, text="PLATES", font=("Bahnschrift SemiBold", 11), bd=5, bg="darkgrey").place(x=534, y=180,
+                                                                                                    width=61, height=20)
+
+# =========================================Main Course===========================================#
+
+
+l1 = tk.Label(frame5, text="Panner Masala", font=("Bahnschrift SemiBold", 15), bd=5, bg="grey", fg="white").place(x=0,
+                                                                                                                  y=360,
+                                                                                                                  height=27,
+                                                                                                                  width=245)
+entry = tk.Entry(frame5, font=("Arial", 15), textvariable=name1).place(x=250, y=360, width=40)
+
+l2 = tk.Label(frame5, text="Malai Kofta", font=("Bahnschrift SemiBold", 15), bd=5, bg="grey", fg="white").place(x=0,
+                                                                                                                y=390,
+                                                                                                                height=27,
+                                                                                                                width=245)
+entry2 = tk.Entry(frame5, font=("Arial", 15), textvariable=name2).place(x=250, y=390, width=40)
+l3 = tk.Label(frame5, text="Fried Rice", font=("Bahnschrift SemiBold", 15), bd=5, bg="grey", fg="white").place(x=0,
+                                                                                                               y=420,
+                                                                                                               height=27,
+                                                                                                               width=245)
+entry3 = tk.Entry(frame5, font=("Arial", 15), textvariable=name3).place(x=250, y=420, width=40)
+l4 = tk.Label(frame5, text="Dal Makhani", font=("Bahnschrift SemiBold", 15), bd=5, bg="grey", fg="white").place(x=0,
+                                                                                                                y=450,
+                                                                                                                height=27,
+                                                                                                                width=245)
+entry4 = tk.Entry(frame5, font=("Arial", 15), textvariable=name4).place(x=250, y=450, width=40)
+l5 = tk.Label(frame5, text="Rajma", font=("Bahnschrift SemiBold", 15), bd=5, bg="grey", fg="white").place(x=0,
+                                                                                                          y=480,
+                                                                                                          height=27,
+                                                                                                          width=245)
+entry5 = tk.Entry(frame5, font=("Arial", 15), textvariable=name5).place(x=250, y=480, width=40)
+l6 = tk.Label(frame5, text="Mushroom Masala", font=("Bahnschrift SemiBold", 15), bd=5, bg="grey", fg="white").place(x=0,
+                                                                                                                    y=510,
+                                                                                                                    height=27,
+                                                                                                                    width=245)
+entry6 = tk.Entry(frame5, font=("Arial", 15), textvariable=name6).place(x=250, y=510, width=40)
+l7 = tk.Label(frame5, text="Chole", font=("Bahnschrift SemiBold", 15), bd=5, bg="grey", fg="white").place(x=0,
+                                                                                                          y=540,
+                                                                                                          height=27,
+                                                                                                          width=245)
+entry7 = tk.Entry(frame5, font=("Arial", 15), textvariable=name7).place(x=250, y=540, width=40)
+l8 = tk.Label(frame5, text="Noodle Soup", font=("Bahnschrift SemiBold", 15), bd=5, bg="grey", fg="white").place(x=0,
+                                                                                                                y=570,
+                                                                                                                height=27,
+                                                                                                                width=245)
+entry8 = tk.Entry(frame5, font=("Arial", 15), textvariable=name8).place(x=250, y=570, width=40)
+l9 = tk.Label(frame5, text="Tomato Soup", font=("Bahnschrift SemiBold", 15), bd=5, bg="grey", fg="white").place(x=0,
+                                                                                                                y=600,
+                                                                                                                height=27,
+                                                                                                                width=245)
+entry9 = tk.Entry(frame5, font=("Arial", 15), textvariable=name9).place(x=250, y=600, width=40)
+l10 = tk.Label(frame5, text="Platter", font=("Bahnschrift SemiBold", 15), bd=5, bg="grey", fg="white").place(x=0,
+                                                                                                             y=630,
+                                                                                                             height=27,
+                                                                                                             width=245)
+entry10 = tk.Entry(frame5, font=("Arial", 15), textvariable=name10).place(x=250, y=630, width=40)
+l11 = tk.Label(frame5, text="Spring Roll", font=("Bahnschrift SemiBold", 15), bd=5, bg="grey", fg="white").place(x=0,
+                                                                                                                 y=660,
+                                                                                                                 height=27,
+                                                                                                                 width=245)
+entry11 = tk.Entry(frame5, font=("Arial", 15), textvariable=name11).place(x=250, y=660, width=40)
+l12 = tk.Label(frame5, text="Dosa", font=("Bahnschrift SemiBold", 15), bd=5, bg="grey", fg="white").place(x=0, y=330,
+                                                                                                          height=27,
+                                                                                                          width=245)
+entry12 = tk.Entry(frame5, font=("Arial", 15), textvariable=name12).place(x=250, y=330, width=40)
+l13 = tk.Label(frame5, text="Uttapam", font=("Bahnschrift SemiBold", 15), bd=5, bg="grey", fg="white").place(x=0, y=300,
+                                                                                                             height=27,
+                                                                                                             width=245)
+entry13 = tk.Entry(frame5, font=("Arial", 15), textvariable=name13).place(x=250, y=300, width=40)
+l14 = tk.Label(frame5, text="Yellow Dal", font=("Bahnschrift SemiBold", 15), bd=5, bg="grey", fg="white").place(x=0,
+                                                                                                                y=270,
+                                                                                                                height=27,
+                                                                                                                width=245)
+entry14 = tk.Entry(frame5, font=("Arial", 15), textvariable=name14).place(x=250, y=270, width=40)
+l15 = tk.Label(frame5, text="Tandoori Roti", font=("Bahnschrift SemiBold", 15), bd=5, bg="grey", fg="white").place(x=0,
+                                                                                                                   y=240,
+                                                                                                                   height=27,
+                                                                                                                   width=245)
+entry15 = tk.Entry(frame5, font=("Arial", 15), textvariable=name15).place(x=250, y=240, width=40)
+l16 = tk.Label(frame5, text="Plain Naan", font=("Bahnschrift SemiBold", 15), bd=5, bg="grey", fg="white").place(x=0,
+                                                                                                                y=210,
+                                                                                                                height=27,
+                                                                                                                width=245)
+entry16 = tk.Entry(frame5, font=("Arial", 15), textvariable=name16).place(x=250, y=210, width=40)
+d1 = StringVar()
+d2 = StringVar()
+
+
+def total():
+    x1 = (name1.get() * 40)
+    x2 = (name2.get() * 50)
+    x3 = (name3.get() * 80)
+    x4 = (name4.get() * 75)
+    x5 = (name5.get() * 55)
+    x6 = (name6.get() * 150)
+    x7 = (name7.get() * 90)
+    x8 = (name8.get() * 95)
+    x9 = (name9.get() * 200)
+    x10 = (name10.get() * 65)
+    x11 = (name11.get() * 93)
+    x12 = (name12.get() * 70)
+    x13 = (name13.get() * 54)
+    x14 = (name14.get() * 57)
+    x15 = (name15.get() * 71)
+    x16 = (name16.get() * 49)
+
+    z1 = (n1.get() * 35)
+    z2 = (n2.get() * 70)
+    z3 = (n3.get() * 150)
+    z4 = (n4.get() * 70)
+    z5 = (n5.get() * 60)
+    z6 = (n6.get() * 150)
+    z7 = (n7.get() * 90)
+    z8 = (n8.get() * 30)
+    z9 = (n9.get() * 25)
+    z10 = (n10.get() * 90)
+    z11 = (n11.get() * 65)
+    z12 = (n12.get() * 40)
+    z13 = (n13.get() * 47)
+    z14 = (n14.get() * 55)
+    z15 = (n15.get() * 20)
+    z16 = (n16.get() * 30)
+
+    main_course_total = float(x1 + x2 + x3 + x4 + x5 + x6 + x7 + x8 + x9 + x10 + x11 + x12 + x13 + x14 + x15 + x16)
+    dessert_total = float(z1 + z2 + z3 + z4 + z5 + z6 + z7 + z8 + z9 + z10 + z11 + z12 + z13 + z14 + z15 + z16)
+    GST = ((main_course_total + dessert_total) * 10) / 100
+    Net_GST = (main_course_total + dessert_total) + GST
+    d1.set(eval(str(Net_GST)))
+    d2.set(eval(str(GST)))
+
+
+def close_et():
+    d1.set(" ")
+    d2.set(" ")
+    box1.delete('0.0', END)
+    namex.set(" ")
+    namep.set(" ")
+    name1.set("0")
+    name2.set("0")
+    name3.set("0")
+    name4.set("0")
+    name5.set("0")
+    name6.set("0")
+    name7.set("0")
+    name8.set("0")
+    name9.set("0")
+    name10.set("0")
+    name11.set("0")
+    name12.set("0")
+    name13.set("0")
+    name14.set("0")
+    name15.set("0")
+    name16.set("0")
+    n1.set("0")
+    n2.set("0")
+    n3.set("0")
+    n4.set("0")
+    n5.set("0")
+    n6.set("0")
+    n7.set("0")
+    n8.set("0")
+    n9.set("0")
+    n10.set("0")
+    n11.set("0")
+    n12.set("0")
+    n13.set("0")
+    n14.set("0")
+    n15.set("0")
+    n16.set("0")
+    show_frame(frame2)
+
+
+def clr():
+    d1.set(" ")
+    d2.set(" ")
+    box1.delete('0.0', END)
+    namex.set(" ")
+    namep.set(" ")
+    name1.set("0")
+    name2.set("0")
+    name3.set("0")
+    name4.set("0")
+    name5.set("0")
+    name6.set("0")
+    name7.set("0")
+    name8.set("0")
+    name9.set("0")
+    name10.set("0")
+    name11.set("0")
+    name12.set("0")
+    name13.set("0")
+    name14.set("0")
+    name15.set("0")
+    name16.set("0")
+    n1.set("0")
+    n2.set("0")
+    n3.set("0")
+    n4.set("0")
+    n5.set("0")
+    n6.set("0")
+    n7.set("0")
+    n8.set("0")
+    n9.set("0")
+    n10.set("0")
+    n11.set("0")
+    n12.set("0")
+    n13.set("0")
+    n14.set("0")
+    n15.set("0")
+    n16.set("0")
+
+
+# =====================================Desert===================================#
+
+l1 = tk.Label(frame5, text="Butter Scotch", font=("Bahnschrift SemiBold", 15), bd=5, bg="grey", fg="white").place(x=300,
+                                                                                                                  y=360,
+                                                                                                                  height=27,
+                                                                                                                  width=245)
+entry = tk.Entry(frame5, font=("Arial", 15), textvariable=n1).place(x=550, y=360, width=40)
+
+l2 = tk.Label(frame5, text="Kesar Pista", font=("Bahnschrift SemiBold", 15), bd=5, bg="grey", fg="white").place(x=300,
+                                                                                                                y=390,
+                                                                                                                height=27,
+                                                                                                                width=245)
+entry2 = tk.Entry(frame5, font=("Arial", 15), textvariable=n2).place(x=550, y=390, width=40)
+l3 = tk.Label(frame5, text="Black Currant", font=("Bahnschrift SemiBold", 15), bd=5, bg="grey", fg="white").place(x=300,
+                                                                                                                  y=420,
+                                                                                                                  height=27,
+                                                                                                                  width=245)
+entry3 = tk.Entry(frame5, font=("Arial", 15), textvariable=n3).place(x=550, y=420, width=40)
+l4 = tk.Label(frame5, text="Pista Kheer", font=("Bahnschrift SemiBold", 15), bd=5, bg="grey", fg="white").place(x=300,
+                                                                                                                y=450,
+                                                                                                                height=27,
+                                                                                                                width=245)
+entry4 = tk.Entry(frame5, font=("Arial", 15), textvariable=n4).place(x=550, y=450, width=40)
+l5 = tk.Label(frame5, text="Ice Cream", font=("Bahnschrift SemiBold", 15), bd=5, bg="grey", fg="white").place(x=300,
+                                                                                                              y=480,
+                                                                                                              height=27,
+                                                                                                              width=245)
+entry5 = tk.Entry(frame5, font=("Arial", 15), textvariable=n5).place(x=550, y=480, width=40)
+l6 = tk.Label(frame5, text="Makhan Mali", font=("Bahnschrift SemiBold", 15), bd=5, bg="grey", fg="white").place(x=300,
+                                                                                                                y=510,
+                                                                                                                height=27,
+                                                                                                                width=245)
+entry6 = tk.Entry(frame5, font=("Arial", 15), textvariable=n6).place(x=550, y=510, width=40)
+l7 = tk.Label(frame5, text="Malpua", font=("Bahnschrift SemiBold", 15), bd=5, bg="grey", fg="white").place(x=300,
+                                                                                                           y=540,
+                                                                                                           height=27,
+                                                                                                           width=245)
+entry7 = tk.Entry(frame5, font=("Arial", 15), textvariable=n7).place(x=550, y=540, width=40)
+l8 = tk.Label(frame5, text="Basundi", font=("Bahnschrift SemiBold", 15), bd=5, bg="grey", fg="white").place(x=300,
+                                                                                                            y=570,
+                                                                                                            height=27,
+                                                                                                            width=245)
+entry8 = tk.Entry(frame5, font=("Arial", 15), textvariable=n8).place(x=550, y=570, width=40)
+l9 = tk.Label(frame5, text="Rasgulla", font=("Bahnschrift SemiBold", 15), bd=5, bg="grey", fg="white").place(x=300,
+                                                                                                             y=600,
+                                                                                                             height=27,
+                                                                                                             width=245)
+entry9 = tk.Entry(frame5, font=("Arial", 15), textvariable=n9).place(x=550, y=600, width=40)
+l10 = Label(frame5, text="Ghevar", font=("Bahnschrift SemiBold", 15), bd=5, bg="grey", fg="white").place(x=300,
+                                                                                                         y=630,
+                                                                                                         height=27,
+                                                                                                         width=245)
+entry10 = tk.Entry(frame5, font=("Arial", 15), textvariable=n10).place(x=550, y=630, width=40)
+l11 = tk.Label(frame5, text="Gajar ka Halwa", font=("Bahnschrift SemiBold", 15), bd=5, bg="grey", fg="white").place(
+    x=300,
+    y=660,
+    height=27,
+    width=245)
+entry11 = tk.Entry(frame5, font=("Arial", 15), textvariable=n11).place(x=550, y=660, width=40)
+l12 = tk.Label(frame5, text="Sandesh", font=("Bahnschrift SemiBold", 15), bd=5, bg="grey", fg="white").place(x=300,
+                                                                                                             y=330,
+                                                                                                             height=27,
+                                                                                                             width=245)
+entry12 = tk.Entry(frame5, font=("Arial", 15), textvariable=n12).place(x=550, y=330, width=40)
+l13 = tk.Label(frame5, text="Puran Poli", font=("Bahnschrift SemiBold", 15), bd=5, bg="grey", fg="white").place(x=300,
+                                                                                                                y=300,
+                                                                                                                height=27,
+                                                                                                                width=245)
+entry13 = tk.Entry(frame5, font=("Arial", 15), textvariable=n13).place(x=550, y=300, width=40)
+l14 = tk.Label(frame5, text="Shahi Tukda", font=("Bahnschrift SemiBold", 15), bd=5, bg="grey", fg="white").place(x=300,
+                                                                                                                 y=270,
+                                                                                                                 height=27,
+                                                                                                                 width=245)
+entry14 = tk.Entry(frame5, font=("Arial", 15), textvariable=n14).place(x=550, y=270, width=40)
+l15 = tk.Label(frame5, text="Modak", font=("Bahnschrift SemiBold", 15), bd=5, bg="grey", fg="white").place(x=300, y=240,
+                                                                                                           height=27,
+                                                                                                           width=245)
+entry15 = tk.Entry(frame5, font=("Arial", 15), textvariable=n15).place(x=550, y=240, width=40)
+l16 = tk.Label(frame5, text="Payasam", font=("Bahnschrift SemiBold", 15), bd=5, bg="grey", fg="white").place(x=300,
+                                                                                                             y=210,
+                                                                                                             height=27,
+                                                                                                             width=245)
+entry16 = tk.Entry(frame5, font=("Arial", 15), textvariable=n16).place(x=550, y=210, width=40)
+
+fc1 = tk.Frame(frame5, relief="groove", bd=5, bg="grey").place(x=1024, y=465, width=327, height=162)
+l17 = tk.Label(frame5, text="GST ", font=("Bahnschrift SemiBold", 15), bd=5, bg="grey").place(x=1030, y=490)
+l18 = tk.Label(frame5, text="Amount ", font=("Bahnschrift SemiBold", 15), bd=5, bg="grey").place(x=1030,
+                                                                                                 y=545)
+lx9 = tk.Label(frame5, text="Rs.", font=("Bahnschrift SemiBold", 11), bd=5, bg="grey").place(x=1150, y=495)
+lx10 = tk.Label(frame5, text="Rs.", font=("Bahnschrift SemiBold", 11), bd=5, bg="grey").place(x=1150, y=548)
+at1 = tk.Entry(frame5, font=("Arial", 15), textvariable=d2).place(x=1180, y=490, width=135, height=30)
+at2 = tk.Entry(frame5, font=("Arial", 15), textvariable=d1).place(x=1180, y=545, width=135, height=30)
+
+btx = tk.Button(frame5, text="Total", font=("Bahnschrift SemiCondensed", 15), bg="grey", fg="black",
+                relief="ridge", bd=3, activebackground="darkgrey", cursor="hand2", command=total).place(x=630,
+                                                                                                        y=640,
+                                                                                                        height=37,
+                                                                                                        width=115)
+btx2 = tk.Button(frame5, text="Generate Bill", command=gent_2, font=("Bahnschrift SemiCondensed", 15), bg="grey",
+                 fg="black", relief="ridge", activebackground="darkgrey"
+                 , bd=3, cursor="hand2").place(x=828,
+                                               y=640, height=37,
+                                               width=115)
+btx3 = tk.Button(frame5, text="Clear", font=("Bahnschrift SemiCondensed", 15), bg="grey", fg="black", relief="ridge",
+                 command=clr, activebackground="darkgrey",
+                 bd=3, cursor="hand2").place(x=1015,
+                                             y=640, height=37,
+                                             width=115)
+btx4 = tk.Button(frame5, text="Exit", command=close_et, font=("Bahnschrift SemiCondensed", 15),
+                 bg="grey", fg="black", relief="ridge", activebackground="darkgrey",
+                 bd=3, cursor="hand2").place(x=1210,
+                                             y=640, height=37,
+                                             width=115)
+
+# ========================================Calculator==========================================#
+
+
+a = StringVar()
+
+
+def show(c):
+    a.set(a.get() + c)
+
+
+def clr():
+    a.set("")
+
+
+def equ():
+    eqa = a.get()
+    a.set(eval(eqa))
+
+
+fc1 = tk.Frame(frame5, relief="groove", bd=5, bg="darkgrey").place(x=1024, y=177, width=327, height=290)
+b1 = tk.Button(frame5, text="CLR", font=("", 10), bg="grey", fg="black", relief="ridge", bd=3, command=clr,
+               activebackground="red", cursor="hand2").place(x=1034, y=230, width=65,
+                                                             height=30)
+b2 = tk.Button(frame5, text="7", font=("", 10), bg="grey", fg="black", relief="ridge", bd=3,
+               command=lambda: show("7"), activebackground="darkgrey", cursor="hand2").place(x=1034, y=275,
+                                                                                             width=92,
+                                                                                             height=30)
+b3 = tk.Button(frame5, text="8", font=("", 10), bg="grey", fg="black", relief="ridge", bd=3,
+               command=lambda: show("8"), activebackground="darkgrey", cursor="hand2").place(x=1140, y=275,
+                                                                                             width=92,
+                                                                                             height=30)
+b4 = tk.Button(frame5, text="9", font=("", 10), bg="grey", fg="black", relief="ridge", bd=3,
+               command=lambda: show("9"), activebackground="darkgrey", cursor="hand2").place(x=1250, y=275,
+                                                                                             width=92,
+                                                                                             height=30)
+b5 = tk.Button(frame5, text="4", font=("", 10), bg="grey", fg="black", relief="ridge", bd=3,
+               command=lambda: show("4"), activebackground="darkgrey", cursor="hand2").place(x=1034, y=310,
+                                                                                             width=92,
+                                                                                             height=30)
+b6 = tk.Button(frame5, text="5", font=("", 10), bg="grey", fg="black", relief="ridge", bd=3,
+               command=lambda: show("5"), activebackground="darkgrey", cursor="hand2").place(x=1140, y=310,
+                                                                                             width=92,
+                                                                                             height=30)
+b7 = Button(frame5, text="6", font=("", 10), bg="grey", fg="black", relief="ridge", bd=3,
+            command=lambda: show("6"), activebackground="darkgrey", cursor="hand2").place(x=1250, y=310,
+                                                                                          width=92,
+                                                                                          height=30)
+b8 = tk.Button(frame5, text="1", font=("", 10), bg="grey", fg="black", relief="ridge", bd=3,
+               command=lambda: show("1"), activebackground="darkgrey", cursor="hand2").place(x=1034, y=345,
+                                                                                             width=92,
+                                                                                             height=30)
+b9 = tk.Button(frame5, text="2", font=("", 10), bg="grey", fg="black", relief="ridge", bd=3,
+               command=lambda: show("2"), activebackground="darkgrey", cursor="hand2").place(x=1140, y=345,
+                                                                                             width=92,
+                                                                                             height=30)
+b10 = tk.Button(frame5, text="3", font=("", 10), bg="grey", fg="black", relief="ridge", bd=3,
+                command=lambda: show("3"), activebackground="darkgrey", cursor="hand2").place(x=1250, y=345,
+                                                                                              width=92,
+                                                                                              height=30)
+b11 = tk.Button(frame5, text="0", font=("", 10), bg="grey", fg="black", relief="ridge", bd=3,
+                command=lambda: show("0"), activebackground="darkgrey", cursor="hand2").place(x=1034, y=380,
+                                                                                              width=92,
+                                                                                              height=30)
+b12 = tk.Button(frame5, text="=", font=("", 10), bg="grey", fg="black", relief="ridge", bd=3, command=equ,
+                cursor="hand2").place(
+    x=1034, y=415,
+    width=92,
+    height=45)
+b12 = tk.Button(frame5, text="+", font=("", 10), bg="grey", fg="black", relief="ridge", bd=3,
+                command=lambda: show("+"), activebackground="darkgrey", cursor="hand2").place(x=1140, y=380,
+                                                                                              width=92,
+                                                                                              height=37)
+b13 = tk.Button(frame5, text="-", font=("", 10), bg="grey", fg="black", relief="ridge", bd=3,
+                command=lambda: show("-"), activebackground="darkgrey", cursor="hand2").place(x=1250, y=380,
+                                                                                              width=92,
+                                                                                              height=37)
+b14 = tk.Button(frame5, text="/", font=("", 10), bg="grey", fg="black", relief="ridge", bd=3,
+                command=lambda: show("/"), activebackground="darkgrey", cursor="hand2").place(x=1250, y=423,
+                                                                                              width=92,
+                                                                                              height=37)
+b15 = tk.Button(frame5, text="*", font=("", 10), bg="grey", fg="black", relief="ridge", bd=3,
+                command=lambda: show("*"), activebackground="darkgrey", cursor="hand2").place(x=1140, y=423,
+                                                                                              width=92,
+                                                                                              height=37)
+entry17 = tk.Entry(frame5, font=("Arial", 15), justify="right", textvariable=a).place(x=1027, y=181, width=317,
+                                                                                      height=40)
+show_frame(frame1)
+
+window.mainloop()
